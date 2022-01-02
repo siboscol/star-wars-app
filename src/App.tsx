@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import ProTip from './ProTip'
-import Signin from './Signin'
+import Signin from './pages/Signin'
 import SignInSide from './pages/SignInSide'
 
 function Copyright() {
