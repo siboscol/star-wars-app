@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
 import ProTip from './ProTip'
-import SignInSide from './pages/SignInSide'
+import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 
 function Copyright() {
@@ -29,7 +29,7 @@ export default function App() {
     //     <ProTip />
     //   </Box>
     // </Container>
-    <SignInSide />
-    // <SignUp />
+    // <SignIn />
+    <SignUp />
   )
 }

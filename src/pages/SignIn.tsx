@@ -28,7 +28,7 @@ const schema = yup.object().shape({
     .max(120, 'Password should be of maximum 120 characters length')
 })
 
-export default function SignInSide() {
+export default function SignIn() {
   const {
     register,
     handleSubmit,
