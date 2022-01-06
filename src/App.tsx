@@ -1,11 +1,13 @@
 import * as React from 'react'
-import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
-import ProTip from './ProTip'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import AuthProvider, { AuthStatus } from './components/AuthProvider'
+import { Route, Routes } from 'react-router-dom'
+import RequireAuth from './components/RequireAuth'
+import HomePageProtected from './pages/Homepage'
+import SignUpInLayout from './layout/SignUpInLayout'
 
 function Copyright() {
   return (
@@ -21,15 +23,22 @@ function Copyright() {
 
 export default function App() {
   return (
-    // <Container maxWidth="sm">
-    //   <Box sx={{ my: 4 }}>
-    //     <Typography variant="h4" component="h1" gutterBottom>
-    //       Create React App example with TypeScript
-    //     </Typography>
-    //     <ProTip />
-    //   </Box>
-    // </Container>
-    // <SignIn />
-    <SignUp />
+    <AuthProvider>
+      <AuthStatus />
+      <Routes>
+        <Route element={<SignUpInLayout />}>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <HomePageProtected />
+            </RequireAuth>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   )
 }

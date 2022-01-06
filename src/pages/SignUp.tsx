@@ -10,7 +10,6 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import SignUpInLayout from '../layout/SignUpInLayout'
 
 interface IFormInput {
   email: string
@@ -53,110 +52,97 @@ export default function SignUp() {
   }
 
   return (
-    <SignUpInLayout>
-      <Box
-        sx={{
-          my: 8,
-          mx: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <Box
-          component="form"
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
-          sx={{ mt: 3 }}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                {...register('firstName')}
-                autoComplete="given-name"
-                name="firstName"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                helperText={errors.firstName?.message}
-                error={!!errors.firstName?.message}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                {...register('lastName')}
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="family-name"
-                helperText={errors.lastName?.message}
-                error={!!errors.lastName?.message}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                {...register('email')}
-                required
-                fullWidth
-                id="email"
-                label="Email"
-                name="email"
-                autoComplete="email"
-                helperText={errors.email?.message}
-                error={!!errors.email?.message}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                {...register('password')}
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                helperText={errors.password?.message}
-                error={!!errors.password?.message}
-              />
-            </Grid>
+    <Box
+      sx={{
+        my: 8,
+        mx: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}
+    >
+      <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign up
+      </Typography>
+      <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              {...register('firstName')}
+              autoComplete="given-name"
+              name="firstName"
+              required
+              fullWidth
+              id="firstName"
+              label="First Name"
+              autoFocus
+              helperText={errors.firstName?.message}
+              error={!!errors.firstName?.message}
+            />
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              {...register('lastName')}
+              required
+              fullWidth
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              autoComplete="family-name"
+              helperText={errors.lastName?.message}
+              error={!!errors.lastName?.message}
+            />
           </Grid>
-        </Box>
+          <Grid item xs={12}>
+            <TextField
+              {...register('email')}
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              helperText={errors.email?.message}
+              error={!!errors.email?.message}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              {...register('password')}
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="new-password"
+              helperText={errors.password?.message}
+              error={!!errors.password?.message}
+            />
+          </Grid>
+        </Grid>
+        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          Sign Up
+        </Button>
+        <Grid container justifyContent="flex-end">
+          <Grid item>
+            <Link href="#" variant="body2">
+              Already have an account? Sign in
+            </Link>
+          </Grid>
+        </Grid>
       </Box>
       {json && (
         <>
           <Typography variant="body1">
-            Below is the JSON that would normally get passed to the server when
-            a form gets submitted
+            Below is the JSON that would normally get passed to the server when a form gets submitted
           </Typography>
           <Typography variant="body2">{json}</Typography>
         </>
       )}
-    </SignUpInLayout>
+    </Box>
   )
 }
