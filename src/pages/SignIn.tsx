@@ -48,7 +48,7 @@ export default function SignIn() {
   let auth = useAuth()
   let location = useLocation()
 
-  let from = (location.state as LocationState)?.from.pathname || '/'
+  let from = (location.state as LocationState)?.from.pathname || '/home'
 
   const onSubmit = (data: IFormInput) => {
     setJson(JSON.stringify(data))
@@ -118,7 +118,7 @@ export default function SignIn() {
             </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link href="/signup" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

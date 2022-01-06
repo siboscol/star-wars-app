@@ -1,4 +1,3 @@
-
-export default function HomePageProtected() {
-  return <h3>Home Page Protected</h3>;
+export default function HomePage() {
+  return <h3>HomePage inside MainLayout</h3>
 }

@@ -6,8 +6,11 @@ import SignUp from './pages/SignUp'
 import AuthProvider, { AuthStatus } from './components/AuthProvider'
 import { Route, Routes } from 'react-router-dom'
 import RequireAuth from './components/RequireAuth'
-import HomePageProtected from './pages/Homepage'
+import MainLayout from './layout/MainLayout'
 import SignUpInLayout from './layout/SignUpInLayout'
+import HomePage from './pages/Homepage'
+import Gallery from './pages/Gallery'
+import Planets from './pages/Planets'
 
 function Copyright() {
   return (
@@ -34,8 +37,20 @@ export default function App() {
           path="/"
           element={
             <RequireAuth>
-              <HomePageProtected />
+              <MainLayout />
             </RequireAuth>
+          }
+        >
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/planets" element={<Planets />} />
+        </Route>
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: '1rem' }}>
+              <p>There's nothing here!</p>
+            </main>
           }
         />
       </Routes>
