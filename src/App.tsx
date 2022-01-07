@@ -1,12 +1,12 @@
-import LoginPage from './pages/LoginPage'
-import SignUp from './pages/SignUp'
+import Login from './pages/LoginPage'
+import SignUp from './pages/SignUpPage'
 import MainLayout from './layout/MainLayout'
 import SignUpInLayout from './layout/SignUpInLayout'
-import HomePage from './pages/Homepage'
-import Gallery from './pages/Gallery'
-import Planets from './pages/Planets'
+import Gallery from './pages/GalleryPage'
+import Planets from './pages/PlanetsPage'
+import HomePage from './pages/HomePage'
 import useAuth, { AuthStatus, AuthProvider } from './hooks/useAuth'
-import { Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom'
+import { Route, Routes, Navigate, Outlet } from 'react-router-dom'
 
 const PrivateRoute = () => {
   const { user } = useAuth()
@@ -22,7 +22,7 @@ export default function App() {
       <AuthStatus />
       <Routes>
         <Route element={<SignUpInLayout />}>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
         <Route path="/" element={<PrivateRoute />}>

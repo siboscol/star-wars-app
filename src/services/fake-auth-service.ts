@@ -14,14 +14,29 @@ const fakeAuthProvider = {
       resolve()
     })
   },
+  signup(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      fakeAuthProvider.isAuthenticated = true
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ firstName, lastName, email, password })
+      )
+      resolve(email)
+    })
+  },
   getCurrentUser(): Promise<string> {
     return new Promise((resolve, reject) => {
       const userStr = localStorage.getItem('user')
-      if (userStr){
+      if (userStr) {
         const user = JSON.parse(userStr)
         resolve(user.email)
       }
-      reject()
+      resolve('')
     })
   }
 }

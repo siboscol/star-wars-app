@@ -12,6 +12,12 @@ import { fakeAuthProvider } from '../services/fake-auth-service'
 interface AuthContextType {
   user?: any
   login: (email: string, password: string) => void
+  signup: (
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ) => void
   logout: () => void
 }
 
@@ -39,6 +45,18 @@ export function AuthProvider({
     })
   }
 
+  const signup = (
+    firstName: string,
+    lastName: string,
+    email: string,
+    passowrd: string
+  ) => {
+    fakeAuthProvider.signup(firstName, lastName, email, passowrd).then(user => {
+      setUser(user)
+      navigate('/home', { replace: true })
+    })
+  }
+
   const logout = () => {
     fakeAuthProvider.logout().then(() => setUser(undefined))
   }
@@ -56,7 +74,8 @@ export function AuthProvider({
     () => ({
       user,
       login,
-      logout
+      logout,
+      signup
     }),
     [user]
   )
