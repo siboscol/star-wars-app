@@ -1,37 +1,46 @@
-import * as React from 'react'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Link from '@mui/material/Link'
-import ProTip from './ProTip'
-import Signin from './pages/Signin'
-import SignInSide from './pages/SignInSide'
+import LoginPage from './pages/LoginPage'
+import SignUp from './pages/SignUp'
+import MainLayout from './layout/MainLayout'
+import SignUpInLayout from './layout/SignUpInLayout'
+import HomePage from './pages/Homepage'
+import Gallery from './pages/Gallery'
+import Planets from './pages/Planets'
+import useAuth, { AuthStatus, AuthProvider } from './hooks/useAuth'
+import { Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  )
+const PrivateRoute = () => {
+  const { user } = useAuth()
+
+  // If authorized, return an outlet that will render child elements
+  // If not, return element that will navigate to login page
+  return user ? <Outlet /> : <Navigate to="/login" />
 }
 
 export default function App() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App example with TypeScript
-        </Typography>
-        <ProTip />
-        <Copyright />
-        <Signin />
-        <SignInSide />
-
-      </Box>
-    </Container>
+    <AuthProvider>
+      <AuthStatus />
+      <Routes>
+        <Route element={<SignUpInLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
+        <Route path="/" element={<PrivateRoute />}>
+          <Route element={<MainLayout />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/planets" element={<Planets />} />
+          </Route>
+        </Route>
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: '1rem' }}>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   )
 }
