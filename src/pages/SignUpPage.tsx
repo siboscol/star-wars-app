@@ -10,6 +10,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import useAuth from '../hooks/useAuth'
 
 interface IFormInput {
   email: string
@@ -37,7 +38,7 @@ const schema = yup.object().shape({
     .max(120, 'Password should be of maximum 120 characters length')
 })
 
-export default function SignUp() {
+export default function SignUpPage() {
   const {
     register,
     handleSubmit,
@@ -46,9 +47,11 @@ export default function SignUp() {
     resolver: yupResolver(schema)
   })
   const [json, setJson] = useState<string>()
+  const { signup } = useAuth()
 
   const onSubmit = (data: IFormInput) => {
     setJson(JSON.stringify(data))
+    signup(data.firstName, data.lastName, data.email, data.password)
   }
 
   return (
@@ -67,7 +70,12 @@ export default function SignUp() {
       <Typography component="h1" variant="h5">
         Sign up
       </Typography>
-      <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+      <Box
+        component="form"
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+        sx={{ mt: 3 }}
+      >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -124,12 +132,17 @@ export default function SignUp() {
             />
           </Grid>
         </Grid>
-        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
           Sign Up
         </Button>
         <Grid container justifyContent="flex-end">
           <Grid item>
-            <Link href="/signin" variant="body2">
+            <Link href="/login" variant="body2">
               Already have an account? Sign in
             </Link>
           </Grid>
@@ -138,7 +151,8 @@ export default function SignUp() {
       {json && (
         <>
           <Typography variant="body1">
-            Below is the JSON that would normally get passed to the server when a form gets submitted
+            Below is the JSON that would normally get passed to the server when
+            a form gets submitted
           </Typography>
           <Typography variant="body2">{json}</Typography>
         </>
