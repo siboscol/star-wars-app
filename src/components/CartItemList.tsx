@@ -4,7 +4,7 @@ import CardItem from '../components/CardItem'
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-export default function HomePage() {
+export default function CardItemList() {
   return (
     <Container sx={{ py: 2 }} maxWidth="xl">
       <Grid container spacing={2}>

@@ -5,7 +5,7 @@ import SignUpInLayout from './layout/SignUpInLayout'
 import Gallery from './pages/GalleryPage'
 import Planets from './pages/PlanetsPage'
 import HomePage from './pages/HomePage'
-import useAuth, { AuthStatus, AuthProvider } from './hooks/useAuth'
+import useAuth, { AuthProvider } from './hooks/useAuth'
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom'
 
 const PrivateRoute = () => {
