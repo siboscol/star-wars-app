@@ -1,22 +1,18 @@
-import { Link, Outlet } from 'react-router-dom'
-import { AuthStatus } from '../hooks/useAuth'
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Footer from '../components/Footer'
+import Hero from '../components/Hero'
+import ResponsiveToolbar from '../components/ResponsiveToolbar'
 
 export default function MainLayout() {
   return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/home">Home Page</Link>
-        </li>
-        <li>
-          <Link to="/gallery">Gallery Page</Link>
-        </li>
-        <li>
-          <Link to="/planets">Planets Page</Link>
-        </li>
-      </ul>
-
-      <Outlet />
-    </div>
+    <React.Fragment>
+      <ResponsiveToolbar />
+      <Hero />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </React.Fragment>
   )
 }
