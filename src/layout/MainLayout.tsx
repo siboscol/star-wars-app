@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
-import { AuthStatus } from '../components/AuthProvider'
+import { AuthStatus } from '../hooks/useAuth'
 
 export default function MainLayout() {
   return (

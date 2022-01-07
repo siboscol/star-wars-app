@@ -1,27 +1,19 @@
-import * as React from 'react'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
-import SignIn from './pages/SignIn'
+import LoginPage from './pages/LoginPage'
 import SignUp from './pages/SignUp'
-import AuthProvider, { AuthStatus } from './components/AuthProvider'
-import { Route, Routes } from 'react-router-dom'
-import RequireAuth from './components/RequireAuth'
 import MainLayout from './layout/MainLayout'
 import SignUpInLayout from './layout/SignUpInLayout'
 import HomePage from './pages/Homepage'
 import Gallery from './pages/Gallery'
 import Planets from './pages/Planets'
+import useAuth, { AuthStatus, AuthProvider } from './hooks/useAuth'
+import { Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  )
+const PrivateRoute = () => {
+  const { user } = useAuth()
+
+  // If authorized, return an outlet that will render child elements
+  // If not, return element that will navigate to login page
+  return user ? <Outlet /> : <Navigate to="/login" />
 }
 
 export default function App() {
@@ -30,20 +22,15 @@ export default function App() {
       <AuthStatus />
       <Routes>
         <Route element={<SignUpInLayout />}>
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route
-          path="/"
-          element={
-            <RequireAuth>
-              <MainLayout />
-            </RequireAuth>
-          }
-        >
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/planets" element={<Planets />} />
+        <Route path="/" element={<PrivateRoute />}>
+          <Route element={<MainLayout />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/planets" element={<Planets />} />
+          </Route>
         </Route>
         <Route
           path="*"

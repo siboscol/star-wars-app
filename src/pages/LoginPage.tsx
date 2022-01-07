@@ -12,8 +12,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { useAuth } from '../components/AuthProvider'
-import { useLocation, useNavigate } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 interface IFormInput {
   email: string
@@ -29,12 +28,6 @@ const schema = yup.object().shape({
     .max(120, 'Password should be of maximum 120 characters length')
 })
 
-type LocationState = {
-  from: {
-    pathname: string
-  }
-}
-
 export default function SignIn() {
   const {
     register,
@@ -44,24 +37,12 @@ export default function SignIn() {
     resolver: yupResolver(schema)
   })
   const [json, setJson] = useState<string>()
-  let navigate = useNavigate()
-  let auth = useAuth()
-  let location = useLocation()
-
-  let from = (location.state as LocationState)?.from.pathname || '/home'
+  const { login } = useAuth()
 
   const onSubmit = (data: IFormInput) => {
     setJson(JSON.stringify(data))
 
-    auth.signin(data.email, () => {
-      // Send them back to the page they tried to visit when they were
-      // redirected to the login page. Use { replace: true } so we don't create
-      // another entry in the history stack for the login page.  This means that
-      // when they get to the protected page and click the back button, they
-      // won't end up back on the login page, which is also really nice for the
-      // user experience.
-      navigate(from, { replace: true })
-    })
+    login(data.email, data.password)
   }
 
   return (
@@ -80,7 +61,12 @@ export default function SignIn() {
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
-      <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
+      <Box
+        component="form"
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+        sx={{ mt: 1 }}
+      >
         <TextField
           {...register('email')}
           margin="normal"
@@ -107,8 +93,16 @@ export default function SignIn() {
           helperText={errors.password?.message}
           error={!!errors.password?.message}
         />
-        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
           Sign In
         </Button>
         <Grid container>
@@ -127,7 +121,8 @@ export default function SignIn() {
       {json && (
         <>
           <Typography variant="body1">
-            Below is the JSON that would normally get passed to the server when a form gets submitted
+            Below is the JSON that would normally get passed to the server when
+            a form gets submitted
           </Typography>
           <Typography variant="body2">{json}</Typography>
         </>
