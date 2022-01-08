@@ -1,6 +1,13 @@
 import { Box, Container, Typography } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 
 export default function Hero() {
+  const location = useLocation()
+  let title = location.pathname.slice(1)
+  title = title === 'home' ? 'Star Wars' : title
+
+  const capitalize = (item: string) => item.charAt(0).toUpperCase() + item.slice(1)
+
   return (
     <Box
       sx={{
@@ -11,7 +18,7 @@ export default function Hero() {
     >
       <Container maxWidth="sm">
         <Typography component="h1" variant="h2" align="center" color="text.primary" gutterBottom>
-          Star Wars
+          {capitalize(title)}
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" paragraph>
           All the Star Wars data you've ever wanted
