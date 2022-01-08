@@ -1,9 +1,11 @@
 import axios from 'axios'
-import AuthService from './auth-service'
 
 const SWAPI_URL = 'https://swapi.dev/api'
 
 class SwapiService {
+  getResources() {
+    return axios.get(`${SWAPI_URL}`)
+  }
   getPeopleById(peopleId: number) {
     return axios.get(`${SWAPI_URL}/people/${peopleId}`)
   }

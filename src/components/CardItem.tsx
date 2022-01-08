@@ -1,8 +1,24 @@
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import { CardActionArea, ImageListItemBar } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
-export default function CardItem(): JSX.Element {
+const imgUrl_base = 'https://starwars-visualguide.com/assets/img/categories'
+
+type CardItemProps = {
+  item: string
+}
+
+const CardItem = ({ item }: CardItemProps): JSX.Element => {
+  const navigate = useNavigate()
+  let resource = item
+  let title = item.charAt(0).toUpperCase() + item.slice(1)
+  if (item === 'people') {
+    resource = 'character'
+    title = 'Characters'
+  }
+  const imgUrl = `${imgUrl_base}/${resource}.jpg`
+
   return (
     <Card
       sx={{
@@ -10,16 +26,14 @@ export default function CardItem(): JSX.Element {
         display: 'flex',
         flexDirection: 'column'
       }}
+      onClick={() => navigate(`/${resource}`)}
     >
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="240"
-          image="https://source.unsplash.com/random"
-          alt="random"
-        />
-        <ImageListItemBar title="Random" />
+        <CardMedia component="img" height="240" image={imgUrl} alt={title} />
+        <ImageListItemBar title={title} />
       </CardActionArea>
     </Card>
   )
 }
+
+export default CardItem
