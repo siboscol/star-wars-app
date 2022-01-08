@@ -15,7 +15,7 @@ import useAuth from '../hooks/useAuth'
 import { useNavigate, Link } from 'react-router-dom'
 import simo_avatar from '../static/images/simo_avatar.png'
 
-const pages = ['Film', 'People', 'Starships', 'Vehicles', 'Species', 'Planets']
+const pages = ['Films', 'Characters', 'Starships', 'Vehicles', 'Species', 'Planets']
 const settings = ['Logout']
 
 const ResponsiveAppBar = () => {
@@ -47,6 +47,7 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="div"
+            onClick={() => navigate('/home')}
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             STAR WARS APP
@@ -92,6 +93,7 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="div"
+            onClick={() => navigate('/home')}
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             STAR WARS APP

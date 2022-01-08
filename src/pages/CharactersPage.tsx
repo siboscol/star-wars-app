@@ -4,25 +4,25 @@ import CardItem from '../components/CardItem'
 import { useEffect, useState } from 'react'
 import swapiService, { Result } from '../services/swapi-service'
 
-const imgUrl = 'https://starwars-visualguide.com/assets/img/planets'
+const imgUrl = 'https://starwars-visualguide.com/assets/img/characters'
 
-export default function PlanetsPage() {
-  const [planets, setPlanets] = useState<Result[]>([])
+export default function CharactersPage() {
+  const [characters, setCharacters] = useState<Result[]>([])
 
   useEffect(() => {
-    swapiService.getPlanets().then(res => {
-      setPlanets(res.data.results)
+    swapiService.getCharacters().then(res => {
+      setCharacters(res.data.results)
     })
   }, [])
 
   return (
     <Container sx={{ py: 2 }} maxWidth="xl">
       <Grid container spacing={2}>
-        {planets.map((planet, index) => (
-          <Grid item key={planet.name} xs={12} sm={6} md={4}>
+        {characters.map((character, index) => (
+          <Grid item key={character.name} xs={12} sm={6} md={4}>
             <CardItem
               pageUrl={`${index + 1}`}
-              title={planet.name}
+              title={character.name}
               imgUrl={`${imgUrl}/${index + 1}.jpg`}
             />
           </Grid>
