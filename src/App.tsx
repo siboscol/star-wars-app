@@ -2,6 +2,7 @@ import Login from './pages/LoginPage'
 import SignUp from './pages/SignUpPage'
 import MainLayout from './layout/MainLayout'
 import SignUpInLayout from './layout/SignUpInLayout'
+import DetailLayout from './layout/DetailLayout'
 import HomePage from './pages/HomePage'
 import CharactersPage from './pages/CharactersPage'
 import FilmsPage from './pages/FilmsPage'
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/planets" element={<PlanetsPage />} />
             <Route path="/films" element={<FilmsPage />} />
+            <Route path="/films/:filmId" element={<DetailLayout />} />
             <Route path="/characters" element={<CharactersPage />} />
             <Route path="/starships" element={<StarshipsPage />} />
             <Route path="/vehicles" element={<VehiclesPage />} />

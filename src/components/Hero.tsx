@@ -20,18 +20,6 @@ export default function Hero() {
         <Typography component="h1" variant="h2" align="center" color="text.primary" gutterBottom>
           {capitalize(title)}
         </Typography>
-        <Typography variant="h5" align="center" color="text.secondary" paragraph>
-          All the Star Wars data you've ever wanted
-        </Typography>
-        <Typography variant="h6" align="center" color="text.secondary" paragraph>
-          Planets, Spaceships, Vehicles, People, Films and Species
-        </Typography>
-        <Typography variant="h6" align="center" color="text.secondary" paragraph>
-          From all SEVEN Star Wars films Now with The Force Awakens data!
-        </Typography>
-        <Typography variant="h4" align="center" color="text.secondary" paragraph>
-          Now with The Force Awakens data!
-        </Typography>
       </Container>
     </Box>
   )
