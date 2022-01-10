@@ -2,6 +2,7 @@ import Login from './pages/LoginPage'
 import SignUp from './pages/SignUpPage'
 import MainLayout from './layout/MainLayout'
 import SignUpInLayout from './layout/SignUpInLayout'
+import DetailLayout from './layout/DetailLayout'
 import HomePage from './pages/HomePage'
 import CharactersPage from './pages/CharactersPage'
 import FilmsPage from './pages/FilmsPage'
@@ -32,11 +33,17 @@ export default function App() {
           <Route element={<MainLayout />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/planets" element={<PlanetsPage />} />
+            <Route path="/planets/:id" element={<DetailLayout />} />
             <Route path="/films" element={<FilmsPage />} />
+            <Route path="/films/:id" element={<DetailLayout />} />
             <Route path="/characters" element={<CharactersPage />} />
+            <Route path="/characters/:id" element={<DetailLayout />} />
             <Route path="/starships" element={<StarshipsPage />} />
+            <Route path="/starships/:id" element={<DetailLayout />} />
             <Route path="/vehicles" element={<VehiclesPage />} />
+            <Route path="/vehicles/:id" element={<DetailLayout />} />
             <Route path="/species" element={<SpeciesPage />} />
+            <Route path="/species/:id" element={<DetailLayout />} />
           </Route>
         </Route>
         <Route

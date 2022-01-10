@@ -21,9 +21,9 @@ export default function PlanetsPage() {
         {planets.map((planet, index) => (
           <Grid item key={planet.name} xs={12} sm={6} md={4}>
             <CardItem
-              pageUrl={`${index + 1}`}
+              pageUrl={`${planet.url.split('/').slice(-2)[0]}`}
               title={planet.name}
-              imgUrl={`${imgUrl}/${index + 1}.jpg`}
+              imgUrl={`${imgUrl}/${planet.url.split('/').slice(-2)[0]}.jpg`}
             />
           </Grid>
         ))}

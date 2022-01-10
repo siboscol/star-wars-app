@@ -3,12 +3,16 @@ import axios from 'axios'
 const SWAPI_URL = 'https://swapi.dev/api'
 
 export interface Result {
+  url: string
   name: string
 }
 
 class SwapiService {
   getResources() {
     return axios.get(`${SWAPI_URL}`)
+  }
+  getResourceById(resourse: string, id: string) {
+    return axios.get(`${SWAPI_URL}/${resourse}/${id}`)
   }
   getCharacters() {
     return axios.get(`${SWAPI_URL}/people`)

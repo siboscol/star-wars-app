@@ -1,4 +1,4 @@
-import { Box, Link, Typography } from '@mui/material'
+import { Box, Container, Link, Typography } from '@mui/material'
 
 function Copyright() {
   return (
@@ -15,14 +15,20 @@ function Copyright() {
 
 export default function Footer() {
   return (
-    <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-      <Typography variant="h6" align="center" gutterBottom>
-        Footer
-      </Typography>
-      <Typography variant="subtitle1" align="center" color="text.secondary" component="p">
-        Something here to give the footer a purpose!
-      </Typography>
-      <Copyright />
+    <Box
+      component="footer"
+      sx={{
+        py: 3,
+        px: 2,
+        mt: 'auto',
+        backgroundColor: theme =>
+          theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[800]
+      }}
+    >
+      <Container maxWidth="sm">
+        <Typography variant="body1">My sticky footer can be found here.</Typography>
+        <Copyright />
+      </Container>
     </Box>
   )
 }
