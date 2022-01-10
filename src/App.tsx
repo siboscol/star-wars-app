@@ -33,12 +33,17 @@ export default function App() {
           <Route element={<MainLayout />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/planets" element={<PlanetsPage />} />
+            <Route path="/planets/:id" element={<DetailLayout />} />
             <Route path="/films" element={<FilmsPage />} />
-            <Route path="/films/:filmId" element={<DetailLayout />} />
+            <Route path="/films/:id" element={<DetailLayout />} />
             <Route path="/characters" element={<CharactersPage />} />
+            <Route path="/characters/:id" element={<DetailLayout />} />
             <Route path="/starships" element={<StarshipsPage />} />
+            <Route path="/starships/:id" element={<DetailLayout />} />
             <Route path="/vehicles" element={<VehiclesPage />} />
+            <Route path="/vehicles/:id" element={<DetailLayout />} />
             <Route path="/species" element={<SpeciesPage />} />
+            <Route path="/species/:id" element={<DetailLayout />} />
           </Route>
         </Route>
         <Route

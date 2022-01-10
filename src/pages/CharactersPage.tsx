@@ -21,9 +21,9 @@ export default function CharactersPage() {
         {characters.map((character, index) => (
           <Grid item key={character.name} xs={12} sm={6} md={4}>
             <CardItem
-              pageUrl={`${index + 1}`}
+              pageUrl={`${character.url.split('/').slice(-2)[0]}`}
               title={character.name}
-              imgUrl={`${imgUrl}/${index + 1}.jpg`}
+              imgUrl={`${imgUrl}/${character.url.split('/').slice(-2)[0]}.jpg`}
             />
           </Grid>
         ))}

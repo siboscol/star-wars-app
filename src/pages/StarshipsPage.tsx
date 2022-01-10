@@ -21,9 +21,9 @@ export default function StarshipsPage() {
         {starships.map((starship, index) => (
           <Grid item key={starship.name} xs={12} sm={6} md={4}>
             <CardItem
-              pageUrl={`${index + 1}`}
+              pageUrl={`${starship.url.split('/').slice(-2)[0]}`}
               title={starship.name}
-              imgUrl={`${imgUrl}/${index + 1}.jpg`}
+              imgUrl={`${imgUrl}/${starship.url.split('/').slice(-2)[0]}.jpg`}
             />
           </Grid>
         ))}

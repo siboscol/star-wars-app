@@ -21,9 +21,9 @@ export default function SpeciesPage() {
         {species.map((s, index) => (
           <Grid item key={s.name} xs={12} sm={6} md={4}>
             <CardItem
-              pageUrl={`${index + 1}`}
+              pageUrl={`${s.url.split('/').slice(-2)[0]}`}
               title={s.name}
-              imgUrl={`${imgUrl}/${index + 1}.jpg`}
+              imgUrl={`${imgUrl}/${s.url.split('/').slice(-2)[0]}.jpg`}
             />
           </Grid>
         ))}

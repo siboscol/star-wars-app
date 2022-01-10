@@ -21,9 +21,9 @@ export default function VehiclesPage() {
         {vehicles.map((vehicle, index) => (
           <Grid item key={vehicle.name} xs={12} sm={6} md={4}>
             <CardItem
-              pageUrl={`${index + 1}`}
+              pageUrl={`${vehicle.url.split('/').slice(-2)[0]}`}
               title={vehicle.name}
-              imgUrl={`${imgUrl}/${index + 1}.jpg`}
+              imgUrl={`${imgUrl}/${vehicle.url.split('/').slice(-2)[0]}.jpg`}
             />
           </Grid>
         ))}

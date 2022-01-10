@@ -2,11 +2,11 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import CardItem from '../components/CardItem'
 import { useEffect, useState } from 'react'
-import swapiService from '../services/swapi-service'
+import swapiService, { Result } from '../services/swapi-service'
 
 const imgUrl = 'https://starwars-visualguide.com/assets/img/films'
 
-export interface Film {
+export interface Film extends Result {
   title: string
 }
 
@@ -25,9 +25,9 @@ export default function FilmsPage() {
         {films.map((film, index) => (
           <Grid item key={film.title} xs={12} sm={6} md={4}>
             <CardItem
-              pageUrl={`${index + 1}`}
+              pageUrl={`${film.url.split('/').slice(-2)[0]}`}
               title={film.title}
-              imgUrl={`${imgUrl}/${index + 1}.jpg`}
+              imgUrl={`${imgUrl}/${film.url.split('/').slice(-2)[0]}.jpg`}
             />
           </Grid>
         ))}
