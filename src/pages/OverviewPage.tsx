@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import CardItem from '../components/CardItem'
@@ -38,21 +38,25 @@ export default function OverviewPage() {
     })
   }, [resourses])
 
+  const getImgUrl = useCallback(
+    (resourseUrl: string) => {
+      let category = !resourses ? 'categories' : resourses
+      category = category === 'people' ? 'characters' : category
+      let url = resourseUrl.includes('people')
+        ? resourseUrl.replace('people', 'character')
+        : resourseUrl
+      return `${imgUrl}/${category}/${getResourseId(url)}.jpg`
+    },
+    [resourcesList]
+  )
+
   const getResourseId = (resourseUrl: string) => resourseUrl.split('/').slice(-2)[0]
-  const getImgUrl = (resourseUrl: string) => {
-    let category = !resourses ? 'categories' : resourses
-    category = category === 'people' ? 'characters' : category
-    let url = resourseUrl.includes('people')
-      ? resourseUrl.replace('people', 'character')
-      : resourseUrl
-    return `${imgUrl}/${category}/${getResourseId(url)}.jpg`
-  }
 
   return (
     <Container maxWidth="xl">
       <Hero title={title} />
       {!loading && (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ mb: 4 }}>
           {resourcesList.map(resource => (
             <Grid item key={resource.name || resource.title} xs={12} sm={6} md={4}>
               <CardItem

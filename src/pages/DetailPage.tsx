@@ -75,14 +75,13 @@ export default function DetailPage() {
     <Container maxWidth="xl">
       <Hero title={title} />
       {!loading && (
-        <Grid container spacing={5}>
+        <Grid container spacing={5} sx={{ mb: 4 }}>
           <Grid item xs={12} md={4}>
             <Paper
               sx={{
                 position: 'relative',
                 backgroundColor: 'grey.800',
                 color: '#fff',
-                mb: 4,
                 minHeight: '100vh',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
