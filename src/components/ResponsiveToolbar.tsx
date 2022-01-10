@@ -15,7 +15,7 @@ import useAuth from '../hooks/useAuth'
 import { useNavigate, Link } from 'react-router-dom'
 import simo_avatar from '../static/images/simo_avatar.png'
 
-const pages = ['Films', 'Characters', 'Starships', 'Vehicles', 'Species', 'Planets']
+const pages = ['Films', 'People', 'Starships', 'Vehicles', 'Species', 'Planets']
 const settings = ['Logout']
 
 const ResponsiveAppBar = () => {
@@ -47,7 +47,7 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="div"
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/')}
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             STAR WARS APP
@@ -84,7 +84,9 @@ const ResponsiveAppBar = () => {
             >
               {pages.map(page => (
                 <MenuItem key={page} component={Link} to={page.toLowerCase()}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                    {page === 'People' ? 'Characters' : page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -93,7 +95,7 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="div"
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/')}
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             STAR WARS APP
@@ -105,7 +107,7 @@ const ResponsiveAppBar = () => {
                 onClick={() => navigate(`/${page.toLowerCase()}`)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page === 'People' ? 'Characters' : page}
               </Button>
             ))}
           </Box>

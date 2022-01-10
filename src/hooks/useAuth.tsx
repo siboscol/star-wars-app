@@ -34,14 +34,14 @@ export function AuthProvider({
   useEffect(() => {
     fakeAuthProvider.getCurrentUser().then(user => {
       setUser(user)
-      navigate('/home', { replace: true })
+      navigate('/', { replace: true })
     })
   }, [])
 
   const login = (email: string, passowrd: string) => {
     fakeAuthProvider.login(email, passowrd).then(user => {
       setUser(user)
-      navigate('/home', { replace: true })
+      navigate('/', { replace: true })
     })
   }
 
@@ -53,7 +53,7 @@ export function AuthProvider({
   ) => {
     fakeAuthProvider.signup(firstName, lastName, email, passowrd).then(user => {
       setUser(user)
-      navigate('/home', { replace: true })
+      navigate('/', { replace: true })
     })
   }
 

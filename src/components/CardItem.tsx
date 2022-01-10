@@ -2,7 +2,6 @@ import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import { CardActionArea, ImageListItemBar } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import React from 'react'
 
 type CardItemProps = {
   pageUrl: string
