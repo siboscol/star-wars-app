@@ -1,19 +1,16 @@
-import { Box, Container, Typography } from '@mui/material'
-import { useLocation } from 'react-router-dom'
+import { Box, capitalize, Container, Typography } from '@mui/material'
 
-export default function Hero() {
-  const location = useLocation()
-  let title = location.pathname.slice(1)
-  title = title === 'home' ? 'Star Wars' : title
+type HeroProps = {
+  title?: string
+}
 
-  const capitalize = (item: string) => item.charAt(0).toUpperCase() + item.slice(1)
-
+const Hero = ({ title = 'Star Wars' }: HeroProps) => {
   return (
     <Box
       sx={{
         bgcolor: 'background.paper',
-        pt: 6,
-        pb: 6
+        pt: 4,
+        pb: 4
       }}
     >
       <Container maxWidth="sm">
@@ -24,3 +21,5 @@ export default function Hero() {
     </Box>
   )
 }
+
+export default Hero

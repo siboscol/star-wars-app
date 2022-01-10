@@ -1,8 +1,6 @@
 import { Box } from '@mui/material'
-import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Footer from '../components/Footer'
-import Hero from '../components/Hero'
 import ResponsiveToolbar from '../components/ResponsiveToolbar'
 
 export default function MainLayout() {
@@ -15,7 +13,6 @@ export default function MainLayout() {
       }}
     >
       <ResponsiveToolbar />
-      <Hero />
       <main>
         <Outlet />
       </main>
