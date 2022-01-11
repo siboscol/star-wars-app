@@ -11,8 +11,8 @@ import Typography from '@mui/material/Typography'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
 import useAuth from '../hooks/useAuth'
+import { Link as RouterLink } from 'react-router-dom'
 
 interface IFormInput {
   email: string
@@ -36,12 +36,9 @@ export default function LoginPage() {
   } = useForm<IFormInput>({
     resolver: yupResolver(schema)
   })
-  const [json, setJson] = useState<string>()
   const { login } = useAuth()
 
   const onSubmit = (data: IFormInput) => {
-    setJson(JSON.stringify(data))
-
     login(data.email, data.password)
   }
 
@@ -61,12 +58,7 @@ export default function LoginPage() {
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
-      <Box
-        component="form"
-        noValidate
-        onSubmit={handleSubmit(onSubmit)}
-        sx={{ mt: 1 }}
-      >
+      <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
         <TextField
           {...register('email')}
           margin="normal"
@@ -97,31 +89,17 @@ export default function LoginPage() {
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
+        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
           Sign In
         </Button>
         <Grid container>
           <Grid item>
-            <Link href="/signup" variant="body2">
+            <Link to="/signup" variant="body2" component={RouterLink}>
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
         </Grid>
       </Box>
-      {json && (
-        <>
-          <Typography variant="body1">
-            Below is the JSON that would normally get passed to the server when
-            a form gets submitted
-          </Typography>
-          <Typography variant="body2">{json}</Typography>
-        </>
-      )}
     </Box>
   )
 }

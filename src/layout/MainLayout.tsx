@@ -9,7 +9,12 @@ export default function MainLayout() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh'
+        minHeight: '100vh',
+        backgroundImage:
+          'url(https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-14.jpg)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       }}
     >
       <ResponsiveToolbar />

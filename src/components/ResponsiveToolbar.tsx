@@ -50,7 +50,11 @@ const ResponsiveAppBar = () => {
             onClick={() => navigate('/')}
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            STAR WARS APP
+            <img
+              src="https://static-mh.content.disney.io/starwars/assets/navigation/sw_logo_stacked@2x-52b4f6d33087.png"
+              alt="logo"
+              width={90}
+            />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -98,7 +102,11 @@ const ResponsiveAppBar = () => {
             onClick={() => navigate('/')}
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            STAR WARS APP
+            <img
+              src="https://static-mh.content.disney.io/starwars/assets/navigation/sw_logo_stacked@2x-52b4f6d33087.png"
+              alt="logo"
+              width={90}
+            />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(page => (

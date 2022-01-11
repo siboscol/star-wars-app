@@ -4,8 +4,10 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      Star Wars and all associated names and/or images are copyright Lucasfilm Ltd. Images were
+      freely collected from{' '}
+      <Link color="inherit" href="http://starwars.wikia.com/wiki/Main_Page">
+        Wookiepedia
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -19,14 +21,10 @@ export default function Footer() {
       component="footer"
       sx={{
         py: 3,
-        px: 2,
-        mt: 'auto',
-        backgroundColor: theme =>
-          theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[800]
+        mt: 'auto'
       }}
     >
       <Container maxWidth="sm">
-        <Typography variant="body1">My sticky footer can be found here.</Typography>
         <Copyright />
       </Container>
     </Box>
