@@ -26,12 +26,7 @@ const CardItem = ({ pageUrl, title, imgUrl }: CardItemProps): JSX.Element => {
       onClick={() => navigate(pageUrl)}
     >
       <CardActionArea>
-        <CardMedia
-          component="img"
-          image={imgUrl}
-          alt={title}
-          onError={handleImageError}
-        />
+        <CardMedia component="img" image={imgUrl} alt={title} onError={handleImageError} />
         <ImageListItemBar title={title} />
       </CardActionArea>
     </Card>

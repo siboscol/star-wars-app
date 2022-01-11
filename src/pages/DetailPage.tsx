@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { Backdrop, capitalize, CircularProgress, Container, Paper } from '@mui/material'
 import swapiService from '../services/swapi-service'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Hero from '../components/Hero'
 
