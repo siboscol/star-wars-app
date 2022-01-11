@@ -28,7 +28,14 @@ export default function OverviewPage() {
       .then(res => {
         const { results, count } = res.data
         if (results) {
-          setResourcesList(results)
+          if (resourses === 'films') {
+            const sortedFilms = results.sort((filmA: Result, filmB: Result) => {
+              return (filmA.episode_id as number) - (filmB.episode_id as number)
+            })
+            setResourcesList(sortedFilms)
+          } else {
+            setResourcesList(results)
+          }
           setCount(Math.ceil(count / 10))
           setPagination(count > 10)
           setTitle(resourses === 'people' ? 'characters' : resourses)
