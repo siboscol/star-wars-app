@@ -89,7 +89,7 @@ export default function OverviewPage() {
               <Grid item key={resource.name || resource.title} xs={12} sm={4} md={4}>
                 <CardItem
                   pageUrl={`${getResourseId(resource.url)}`}
-                  title={capitalize(resource.name || resource.title || '')}
+                  title={capitalize(resource.name || `Episode ${resource.episode_id}: ${resource.title}` || '')}
                   imgUrl={`${getImgUrl(resource.url)}`}
                 />
               </Grid>
