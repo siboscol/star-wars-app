@@ -4,6 +4,7 @@ import { red } from '@mui/material/colors';
 // A custom theme for this app
 const theme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
       main: '#556cd6',
     },
@@ -12,7 +13,7 @@ const theme = createTheme({
     },
     error: {
       main: red.A400,
-    },
+    }
   },
 });
 
