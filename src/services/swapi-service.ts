@@ -9,8 +9,8 @@ export interface Result {
 }
 
 class SwapiService {
-  getResourcesList(resourses: string = '') {
-    return axios.get(`${SWAPI_URL}/${resourses}`)
+  getResourcesList(resourses: string = '', page: number = 1) {
+    return axios.get(`${SWAPI_URL}/${resourses}${page > 1 ? `?page=${page}` : ''}`)
   }
   getResourceById(resourse: string, id: string) {
     return axios.get(`${SWAPI_URL}/${resourse}/${id}`)
