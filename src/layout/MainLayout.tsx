@@ -11,7 +11,7 @@ export default function MainLayout() {
         flexDirection: 'column',
         minHeight: '100vh',
         backgroundImage:
-          'url(https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-14.jpg)',
+          'url(https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
