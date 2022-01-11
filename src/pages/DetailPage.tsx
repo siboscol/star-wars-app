@@ -23,6 +23,9 @@ export default function DetailPage() {
     setLoading(true)
     swapiService.getResourceById(resourceName, id).then(res => {
       const {
+        name,
+        title,
+        episode_id,
         species,
         vehicles,
         films,
@@ -39,7 +42,12 @@ export default function DetailPage() {
         ...details
       } = res.data
       setDetails(details)
-      setTitle(details.name || details.title)
+      if (title && episode_id) {
+        setTitle(`Episode ${episode_id}: ${title}`)
+      }
+      if (name) {
+        setTitle(name)
+      }
       if (species) {
         setSpecies(species)
       }
@@ -94,8 +102,8 @@ export default function DetailPage() {
           </Grid>
           <Grid item xs={12} md={8}>
             {Object.keys(details).map((detail, index) => (
-              <Typography key={index} variant="h6" gutterBottom>
-                {capitalize(detail.replaceAll('_', ' '))}: {details[detail]}
+              <Typography key={index} variant="subtitle1" gutterBottom>
+                {capitalize(detail.replaceAll('_', ' '))}: <strong>{details[detail]}</strong>
               </Typography>
             ))}
           </Grid>

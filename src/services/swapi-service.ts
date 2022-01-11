@@ -3,6 +3,7 @@ import axios from 'axios'
 const SWAPI_URL = 'https://swapi.dev/api'
 
 export interface Result {
+  episode_id?: number
   url: string
   name: string
   title?: string
