@@ -23,7 +23,7 @@ export default function OverviewPage() {
       const { results } = res.data
       if (results) {
         setResourcesList(results)
-        setTitle(capitalize(resourses === 'people' ? 'characters' : resourses))
+        setTitle(resourses === 'people' ? 'characters' : resourses)
       } else {
         const results: Result[] = Object.keys(res.data).map((resourse: string) => {
           return {
@@ -53,12 +53,12 @@ export default function OverviewPage() {
   const getResourseId = (resourseUrl: string) => resourseUrl.split('/').slice(-2)[0]
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="lg">
       <Hero title={title} />
       {!loading && (
-        <Grid container spacing={2} sx={{ mb: 4 }}>
+        <Grid container spacing={3} sx={{ mb: 4 }}>
           {resourcesList.map(resource => (
-            <Grid item key={resource.name || resource.title} xs={12} sm={6} md={4}>
+            <Grid item key={resource.name || resource.title} xs={12} sm={4} md={4}>
               <CardItem
                 pageUrl={`${getResourseId(resource.url)}`}
                 title={capitalize(resource.name || resource.title || '')}

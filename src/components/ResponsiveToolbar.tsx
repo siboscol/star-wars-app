@@ -89,7 +89,7 @@ const ResponsiveAppBar = () => {
               {pages.map(page => (
                 <MenuItem key={page} component={Link} to={page.toLowerCase()}>
                   <Typography textAlign="center">
-                    {page === 'People' ? 'Characters' : page}
+                    {page === 'People' ? 'Characters' : page.toUpperCase()}
                   </Typography>
                 </MenuItem>
               ))}
@@ -115,7 +115,7 @@ const ResponsiveAppBar = () => {
                 onClick={() => navigate(`/${page.toLowerCase()}`)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page === 'People' ? 'Characters' : page}
+                {page === 'People' ? 'Characters' : page.toUpperCase()}
               </Button>
             ))}
           </Box>

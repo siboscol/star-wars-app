@@ -14,13 +14,12 @@ const CardItem = ({ pageUrl, title, imgUrl }: CardItemProps): JSX.Element => {
 
   const handleImageError = (e: any) => {
     e.target.onerror = null
-    e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'
+    e.target.src = 'https://starwars-visualguide.com/assets/img/big-placeholder.jpg'
   }
 
   return (
     <Card
       sx={{
-        height: '100%',
         display: 'flex',
         flexDirection: 'column'
       }}
@@ -29,7 +28,6 @@ const CardItem = ({ pageUrl, title, imgUrl }: CardItemProps): JSX.Element => {
       <CardActionArea>
         <CardMedia
           component="img"
-          height="240"
           image={imgUrl}
           alt={title}
           onError={handleImageError}
