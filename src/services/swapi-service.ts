@@ -20,6 +20,19 @@ class SwapiService {
   getResourceById(resourse: string, id: string) {
     return axios.get(`${SWAPI_URL}/${resourse}/${id}`)
   }
+  async getResourceByUrl(resourseUrl: string) {
+    const res = await axios.get(resourseUrl)
+    return res.data
+  }
+  async getResoursesByUrls(urls: string[]) {
+    try {
+      const urlsPromises = urls.map(url => axios.get(url))
+      const res = await Promise.all(urlsPromises)
+      return res.map(res => res.data)
+    } catch {
+      throw Error('Error fetching resourses urls')
+    }
+  }
 }
 
 export default new SwapiService()

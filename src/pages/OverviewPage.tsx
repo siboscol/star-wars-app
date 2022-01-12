@@ -12,7 +12,7 @@ import SearchField from '../components/SearchField'
 const imgUrl = 'https://starwars-visualguide.com/assets/img'
 
 export default function OverviewPage() {
-  let { resourses = '' } = useParams()
+  const { resourses = '' } = useParams()
   const [resourcesList, setResourcesList] = useState<Result[]>([])
   const [search, setSearch] = useState<string>('')
   const [title, setTitle] = useState<string>('')
@@ -95,7 +95,7 @@ export default function OverviewPage() {
         spacing={3}
         sx={{ mb: 4 }}
       >
-        <Grid item xs={12} sm={12} md={12}>
+        <Grid item>
           {resourses && (
             <SearchField
               callback={search => {
