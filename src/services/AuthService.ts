@@ -1,15 +1,15 @@
-const fakeAuthProvider = {
+const AuthService = {
   isAuthenticated: false,
   login(email: string, password: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
-      fakeAuthProvider.isAuthenticated = true
+      AuthService.isAuthenticated = true
       localStorage.setItem('user', JSON.stringify({ email, password }))
       resolve(email)
     })
   },
   logout() {
     return new Promise<void>((resolve, reject) => {
-      fakeAuthProvider.isAuthenticated = false
+      AuthService.isAuthenticated = false
       localStorage.removeItem('user')
       resolve()
     })
@@ -21,7 +21,7 @@ const fakeAuthProvider = {
     password: string
   ): Promise<string> {
     return new Promise<string>((resolve, reject) => {
-      fakeAuthProvider.isAuthenticated = true
+      AuthService.isAuthenticated = true
       localStorage.setItem(
         'user',
         JSON.stringify({ firstName, lastName, email, password })
@@ -41,4 +41,4 @@ const fakeAuthProvider = {
   }
 }
 
-export { fakeAuthProvider }
+export { AuthService }

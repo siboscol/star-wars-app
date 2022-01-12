@@ -9,12 +9,12 @@ import {
   Container,
   Paper
 } from '@mui/material'
-import swapiService, { Result } from '../services/swapi-service'
-import { useParams, Link } from 'react-router-dom'
+import swapiService, { Result } from '../services/SwapiService'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Hero from '../components/Hero'
 import Related from '../components/Related'
-import { getPageUrl, getImgUrl } from '../tools'
+import { getPageUrl, getImgUrl, SW_IMAGES_URL } from '../tools'
 
 type Related = {
   [key: string]: string[]
@@ -27,58 +27,70 @@ export default function DetailPage() {
   const [details, setDetails] = useState<any>({})
   const [related, setRelated] = useState<Related>({})
   const [homeworld, setHomeworld] = useState<Result>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const resourceName = resourses === 'characters' ? 'people' : resourses
     setLoading(true)
     setHomeworld(undefined)
-    swapiService.getResourceById(resourceName, id).then(res => {
-      const {
-        name,
-        title,
-        episode_id,
-        release_date,
-        created,
-        edited,
-        url,
-        homeworld,
-        films,
-        characters,
-        planets,
-        people,
-        pilots,
-        species,
-        residents,
-        starships,
-        vehicles,
-        ...details
-      } = res.data
-      setDetails(details)
-      const related: Related = {
-        films,
-        characters,
-        planets,
-        people,
-        pilots,
-        species,
-        residents,
-        starships,
-        vehicles
-      }
-      setRelated(related)
-      if (title && episode_id) {
-        setTitle(`Episode ${episode_id}: ${title}`)
-      }
-      if (name) {
-        setTitle(name)
-      }
-      if (homeworld) {
-        swapiService.getResourceByUrl(homeworld).then(planet => {
-          setHomeworld(planet)
-        })
-      }
-      setLoading(false)
-    })
+    swapiService
+      .getResourceById(resourceName, id)
+      .then(res => {
+        const {
+          name,
+          title,
+          episode_id,
+          release_date,
+          created,
+          edited,
+          url,
+          homeworld,
+          films,
+          characters,
+          planets,
+          people,
+          pilots,
+          species,
+          residents,
+          starships,
+          vehicles,
+          ...details
+        } = res.data
+        setDetails(details)
+        const related: Related = {
+          films,
+          characters,
+          planets,
+          people,
+          pilots,
+          species,
+          residents,
+          starships,
+          vehicles
+        }
+        setRelated(related)
+        if (title && episode_id) {
+          setTitle(`Episode ${episode_id}: ${title}`)
+        }
+        if (name) {
+          setTitle(name)
+        }
+        if (homeworld) {
+          swapiService
+            .get(homeworld)
+            .then(planet => {
+              setHomeworld(planet)
+            })
+            .catch(err => {
+              console.log('Error while getting homeworld', err)
+              setLoading(false)
+            })
+        }
+        setLoading(false)
+      })
+      .catch(err => {
+        setLoading(false)
+      })
   }, [resourses])
 
   return (
@@ -96,9 +108,9 @@ export default function DetailPage() {
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
-                backgroundImage: `url(https://starwars-visualguide.com/assets/img/${
+                backgroundImage: `url(${SW_IMAGES_URL}/${
                   resourses === 'people' ? 'characters' : resourses
-                }/${id}.jpg), url('https://starwars-visualguide.com/assets/img/placeholder.jpg')`
+                }/${id}.jpg), url('${SW_IMAGES_URL}/placeholder.jpg')`
               }}
             />
           </Grid>
@@ -112,27 +124,29 @@ export default function DetailPage() {
               </Typography>
             ))}
             {homeworld && (
-              <Typography variant="subtitle1" gutterBottom>
-                Homeworld:{' '}
+              <Grid container direction="row" justifyContent="flex-start" alignItems="center">
+                <Typography variant="subtitle1" sx={{ pr: 2 }}>
+                  Homeworld:
+                </Typography>
+                <Avatar
+                  src={getImgUrl(homeworld.url)}
+                  alt=" "
+                  sx={{
+                    backgroundImage: `url(${SW_IMAGES_URL}/placeholder-small.jpg)`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                  onClick={() => navigate(getPageUrl(homeworld.url))}
+                />
                 <Box
-                  sx={{ color: 'warning.light', display: 'inline', fontSize: 14 }}
+                  sx={{ color: 'warning.light', fontSize: 14, pl: 2 }}
                   component={Link}
                   to={getPageUrl(homeworld.url)}
                 >
                   {homeworld.name}
-                  <Avatar
-                    src={getImgUrl(homeworld.url)}
-                    alt=" "
-                    sx={{
-                      backgroundImage:
-                        'url(https://starwars-visualguide.com/assets/img/placeholder-small.jpg)',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  />
                 </Box>
-              </Typography>
+              </Grid>
             )}
           </Grid>
         </Grid>

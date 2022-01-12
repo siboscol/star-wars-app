@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const SWAPI_URL = 'https://swapi.dev/api'
+export const SWAPI_URL = 'https://swapi.py4e.com/api'
 
 export interface Result {
   episode_id?: number
@@ -10,6 +10,14 @@ export interface Result {
 }
 
 class SwapiService {
+  async get(url: string) {
+    try {
+      const res = await axios.get(url)
+      return res.data
+    } catch (error) {
+      throw Error('Network error while fetching resourses')
+    }
+  }
   getResourcesList(resourses: string = '', page?: number, search?: string) {
     return axios.get(
       `${SWAPI_URL}/${resourses}${page || search ? '?' : ''}${page ? `page=${page}` : ''}${
@@ -19,10 +27,6 @@ class SwapiService {
   }
   getResourceById(resourse: string, id: string) {
     return axios.get(`${SWAPI_URL}/${resourse}/${id}`)
-  }
-  async getResourceByUrl(resourseUrl: string) {
-    const res = await axios.get(resourseUrl)
-    return res.data
   }
   async getResoursesByUrls(urls: string[]) {
     try {

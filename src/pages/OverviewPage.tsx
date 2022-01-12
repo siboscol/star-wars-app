@@ -5,11 +5,10 @@ import CardItem from '../components/CardItem'
 import Hero from '../components/Hero'
 import { capitalize } from '@mui/material/utils'
 import { useParams } from 'react-router-dom'
-import swapiService, { Result } from '../services/swapi-service'
+import swapiService, { Result } from '../services/SwapiService'
 import { Backdrop, CircularProgress, Pagination } from '@mui/material'
 import SearchField from '../components/SearchField'
-
-const imgUrl = 'https://starwars-visualguide.com/assets/img'
+import { SW_IMAGES_URL } from '../tools'
 
 export default function OverviewPage() {
   const { resourses = '' } = useParams()
@@ -74,7 +73,7 @@ export default function OverviewPage() {
       let url = resourseUrl.includes('people')
         ? resourseUrl.replace('people', 'character')
         : resourseUrl
-      return `${imgUrl}/${category}/${getResourseId(url)}.jpg`
+      return `${SW_IMAGES_URL}/${category}/${getResourseId(url)}.jpg`
     },
     [resourcesList]
   )

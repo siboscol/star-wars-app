@@ -12,9 +12,9 @@ import {
 } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import swapiService, { Result } from '../services/swapi-service'
+import swapiService, { Result } from '../services/SwapiService'
 import { Link } from 'react-router-dom'
-import { getImgUrl, getPageUrl, getTitle } from '../tools'
+import { getImgUrl, getPageUrl, getTitle, SW_IMAGES_URL } from '../tools'
 
 type RelatedProps = {
   name: string
@@ -70,8 +70,7 @@ export default function Related({ name, urls }: RelatedProps) {
                       src={getImgUrl(item.url)}
                       alt=" "
                       sx={{
-                        backgroundImage:
-                          'url(https://starwars-visualguide.com/assets/img/placeholder-small.jpg)',
+                        backgroundImage: `url(${SW_IMAGES_URL}/placeholder-small.jpg)`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'

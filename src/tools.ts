@@ -1,16 +1,16 @@
 import { capitalize } from '@mui/material/utils'
-import { Result } from './services/swapi-service'
+import { Result, SWAPI_URL } from './services/SwapiService'
 
-export const imgBaseUrl = 'https://starwars-visualguide.com/assets/img'
+export const SW_IMAGES_URL = 'https://starwars-visualguide.com/assets/img'
 
 export const getPageUrl = (resourseUrl: string) => {
-  return resourseUrl.replace('https://swapi.dev/api', '')
+  return resourseUrl.replace(SWAPI_URL, '')
 }
 
 export const getImgUrl = (resourseUrl: string) => {
-  const urlSuffix = resourseUrl.replace('https://swapi.dev/api', '').slice(0, -1)
+  const urlSuffix = resourseUrl.replace(SWAPI_URL, '').slice(0, -1)
   const url = urlSuffix.replace('people', 'characters')
-  const final = `${imgBaseUrl}${url}.jpg`
+  const final = `${SW_IMAGES_URL}${url}.jpg`
   return final
 }
 
