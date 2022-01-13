@@ -3,16 +3,14 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import CardItem from '../components/CardItem'
 import Hero from '../components/Hero'
-import { capitalize } from '@mui/material/utils'
 import { useParams } from 'react-router-dom'
-import swapiService, { Result } from '../services/swapi-service'
+import swapiService, { Result } from '../services/SwapiService'
 import { Backdrop, CircularProgress, Pagination } from '@mui/material'
 import SearchField from '../components/SearchField'
-
-const imgUrl = 'https://starwars-visualguide.com/assets/img'
+import { getResourseId, getTitle, SW_IMAGES_URL } from '../tools'
 
 export default function OverviewPage() {
-  let { resourses = '' } = useParams()
+  const { resourses = '' } = useParams()
   const [resourcesList, setResourcesList] = useState<Result[]>([])
   const [search, setSearch] = useState<string>('')
   const [title, setTitle] = useState<string>('')
@@ -74,15 +72,10 @@ export default function OverviewPage() {
       let url = resourseUrl.includes('people')
         ? resourseUrl.replace('people', 'character')
         : resourseUrl
-      return `${imgUrl}/${category}/${getResourseId(url)}.jpg`
+      return `${SW_IMAGES_URL}/${category}/${getResourseId(url)}.jpg`
     },
     [resourcesList]
   )
-
-  const getResourseId = (resourseUrl: string) => resourseUrl.split('/').slice(-2)[0]
-
-  const getTitle = (resource: Result) =>
-    capitalize(resource.name || `Episode ${resource.episode_id}: ${resource.title}` || '')
 
   return (
     <Container maxWidth="lg">
@@ -95,7 +88,7 @@ export default function OverviewPage() {
         spacing={3}
         sx={{ mb: 4 }}
       >
-        <Grid item xs={12} sm={12} md={12}>
+        <Grid item>
           {resourses && (
             <SearchField
               callback={search => {
@@ -114,9 +107,9 @@ export default function OverviewPage() {
         )}
       </Grid>
       {!loading && (
-        <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid container spacing={4} sx={{ mb: 4 }}>
           {resourcesList.map(resource => (
-            <Grid item key={resource.name || resource.title} xs={12} sm={4} md={4}>
+            <Grid item key={resource.name || resource.title} xs={12} sm={3} md={3}>
               <CardItem
                 pageUrl={`${getResourseId(resource.url)}`}
                 title={getTitle(resource)}

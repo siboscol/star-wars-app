@@ -121,9 +121,9 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={simo_avatar} />
+                <Avatar alt="Simo" src={simo_avatar} />
               </IconButton>
             </Tooltip>
             <Menu

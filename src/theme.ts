@@ -13,10 +13,19 @@ const theme = createTheme({
     },
     error: {
       main: red.A400
+    },
+    warning: {
+      main: '#FFE81F'
     }
   },
   typography: {
-    fontFamily: 'Star Jedi'
+    fontFamily: [
+      'Star Jedi',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+    ].join(',')
   }
 })
 

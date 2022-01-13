@@ -2,6 +2,7 @@ import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import { CardActionArea, ImageListItemBar } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { SW_IMAGES_URL } from '../tools'
 
 type CardItemProps = {
   pageUrl: string
@@ -14,7 +15,7 @@ const CardItem = ({ pageUrl, title, imgUrl }: CardItemProps): JSX.Element => {
 
   const handleImageError = (e: any) => {
     e.target.onerror = null
-    e.target.src = 'https://starwars-visualguide.com/assets/img/big-placeholder.jpg'
+    e.target.src = `${SW_IMAGES_URL}/big-placeholder.jpg`
   }
 
   return (
