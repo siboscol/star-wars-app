@@ -59,6 +59,7 @@ Please make sure to update tests as appropriate.
 - Integrate breadcrumb for navigation
 - Implement a central State management system with Redux in order to store and cache APis responses and avoid server overload and improve loading time and user experience
 - Improve images resizing and overall layout and background images
+- Improve Apis error handling by showing error messages and leave app in a consistent state
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
