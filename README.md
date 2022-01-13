@@ -68,6 +68,7 @@ Please make sure to update tests as appropriate.
 ## References
 
 - https://swapi.dev/
+- https://swapi.py4e.com/
 - https://mui.com/
 - https://reactrouter.com/
 - https://starwars-visualguide.com/#/
