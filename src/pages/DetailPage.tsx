@@ -94,7 +94,7 @@ export default function DetailPage() {
   }, [resourses])
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="lg">
       <Hero title={title} />
       {!loading && (
         <Grid container spacing={5} sx={{ mb: 4 }}>

@@ -10,8 +10,6 @@ import OverviewPage from './pages/OverviewPage'
 const PrivateRoute = () => {
   const { user } = useAuth()
 
-  // If user is present, return an outlet that will render child elements
-  // If not, return element that will navigate to login page
   return user ? <Outlet /> : <Navigate to="/login" />
 }
 

@@ -3,12 +3,11 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import CardItem from '../components/CardItem'
 import Hero from '../components/Hero'
-import { capitalize } from '@mui/material/utils'
 import { useParams } from 'react-router-dom'
 import swapiService, { Result } from '../services/SwapiService'
 import { Backdrop, CircularProgress, Pagination } from '@mui/material'
 import SearchField from '../components/SearchField'
-import { SW_IMAGES_URL } from '../tools'
+import { getResourseId, getTitle, SW_IMAGES_URL } from '../tools'
 
 export default function OverviewPage() {
   const { resourses = '' } = useParams()
@@ -78,11 +77,6 @@ export default function OverviewPage() {
     [resourcesList]
   )
 
-  const getResourseId = (resourseUrl: string) => resourseUrl.split('/').slice(-2)[0]
-
-  const getTitle = (resource: Result) =>
-    capitalize(resource.name || `Episode ${resource.episode_id}: ${resource.title}` || '')
-
   return (
     <Container maxWidth="lg">
       <Hero title={title} />
@@ -113,9 +107,9 @@ export default function OverviewPage() {
         )}
       </Grid>
       {!loading && (
-        <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid container spacing={4} sx={{ mb: 4 }}>
           {resourcesList.map(resource => (
-            <Grid item key={resource.name || resource.title} xs={12} sm={4} md={4}>
+            <Grid item key={resource.name || resource.title} xs={12} sm={3} md={3}>
               <CardItem
                 pageUrl={`${getResourseId(resource.url)}`}
                 title={getTitle(resource)}

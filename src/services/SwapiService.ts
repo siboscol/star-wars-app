@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 export const SWAPI_URL = 'https://swapi.py4e.com/api'
+// TODO Swap to following if server is back online
+// export const SWAPI_URL = 'https://swapi.dev/api'
 
 export interface Result {
   episode_id?: number

@@ -19,7 +19,13 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: 'Star Jedi'
+    fontFamily: [
+      'Star Jedi',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+    ].join(',')
   }
 })
 

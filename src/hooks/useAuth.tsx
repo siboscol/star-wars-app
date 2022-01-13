@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthService } from '../services/AuthService'
+import AuthService from '../services/AuthService'
 
 interface AuthContextType {
   user?: any
@@ -56,4 +56,3 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
 export default function useAuth() {
   return useContext(AuthContext)
 }
-
