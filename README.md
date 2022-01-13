@@ -13,7 +13,7 @@ This app has been built to practice core concepts of React with Typescript.
 - Local user storage in order to refresh page without being logged out
 - Overview page for all Star Wars resources
 - Resources navigation and pagination
-- Search for each resource through SWAPI
+- Search for each resource through SWAPI and input field debouncing
 - Resource detail page with related resources navigation
 - Support for mobile screens
 - Logout user
