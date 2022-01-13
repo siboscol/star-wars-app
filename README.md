@@ -17,6 +17,7 @@ This app has been built to practice core concepts of React with Typescript.
 - Resource detail page with related resources navigation
 - Support for mobile screens
 - Logout user
+- Simple error handling with react-error-boundary
 
 ## Prerequisites
 
@@ -73,3 +74,4 @@ Please make sure to update tests as appropriate.
 - https://dev.to/finiam/predictable-react-authentication-with-the-context-api-g10
 - https://javascript.plainenglish.io/creating-a-sign-up-form-in-react-with-typescript-516b1a172913
 - https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
+- https://kentcdodds.com/blog/use-react-error-boundary-to-handle-errors-in-react

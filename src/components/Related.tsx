@@ -15,6 +15,7 @@ import CardContent from '@mui/material/CardContent'
 import swapiService, { Result } from '../services/SwapiService'
 import { Link } from 'react-router-dom'
 import { getImgUrl, getPageUrl, getTitle, SW_IMAGES_URL } from '../tools'
+import { useErrorHandler } from 'react-error-boundary'
 
 type RelatedProps = {
   name: string
@@ -24,6 +25,7 @@ type RelatedProps = {
 export default function Related({ name, urls }: RelatedProps) {
   const [related, setRelated] = useState<Result[]>([])
   const [loading, setLoading] = useState(false)
+  const handleError = useErrorHandler()
 
   useEffect(() => {
     setLoading(true)
@@ -39,7 +41,7 @@ export default function Related({ name, urls }: RelatedProps) {
           setRelated(results)
         }
       } catch (error) {
-        setRelated([])
+        handleError(error)
       } finally {
         setLoading(false)
       }

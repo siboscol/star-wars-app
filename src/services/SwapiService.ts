@@ -21,14 +21,22 @@ class SwapiService {
     }
   }
   getResourcesList(resourses: string = '', page?: number, search?: string) {
-    return axios.get(
-      `${SWAPI_URL}/${resourses}${page || search ? '?' : ''}${page ? `page=${page}` : ''}${
-        search ? `&search=${search}` : ''
-      }`
-    )
+    try {
+      return axios.get(
+        `${SWAPI_URL}/${resourses}${page || search ? '?' : ''}${page ? `page=${page}` : ''}${
+          search ? `&search=${search}` : ''
+        }`
+      )
+    } catch (error) {
+      throw Error(`Error fetching resource list ${resourses}`)
+    }
   }
   getResourceById(resourse: string, id: string) {
-    return axios.get(`${SWAPI_URL}/${resourse}/${id}`)
+    try {
+      return axios.get(`${SWAPI_URL}/${resourse}/${id}`)
+    } catch (error) {
+      throw Error(`Error fetching resource ${resourse} n. ${id}`)
+    }
   }
   async getResoursesByUrls(urls: string[]) {
     try {

@@ -8,6 +8,7 @@ import swapiService, { Result } from '../services/SwapiService'
 import { Backdrop, CircularProgress, Pagination } from '@mui/material'
 import SearchField from '../components/SearchField'
 import { getResourseId, getTitle, SW_IMAGES_URL } from '../tools'
+import { useErrorHandler } from 'react-error-boundary'
 
 export default function OverviewPage() {
   const { resourses = '' } = useParams()
@@ -18,6 +19,7 @@ export default function OverviewPage() {
   const [pagination, setPagination] = useState<boolean>(false)
   const [count, setCount] = useState(10)
   const [loading, setLoading] = useState(false)
+  const handleError = useErrorHandler()
 
   const getResourcesList = async (resourses: string, page?: number, search?: string) => {
     setLoading(true)
@@ -49,7 +51,7 @@ export default function OverviewPage() {
         }
       })
       .catch(e => {
-        console.log(e)
+        handleError(e)
       })
       .finally(() => {
         setLoading(false)
@@ -119,7 +121,7 @@ export default function OverviewPage() {
           ))}
           {!resourcesList.length && (
             <Grid item xs={12} sm={4} md={4}>
-              <div>{`No ${resourses} found.`}</div>
+              <div>{`No ${resourses || 'resources'} found.`}</div>
             </Grid>
           )}
         </Grid>

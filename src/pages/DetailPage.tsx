@@ -15,6 +15,8 @@ import { useEffect, useState } from 'react'
 import Hero from '../components/Hero'
 import Related from '../components/Related'
 import { getPageUrl, getImgUrl, SW_IMAGES_URL } from '../tools'
+import { ErrorBoundary, useErrorHandler } from 'react-error-boundary'
+import RelatedErrorFallback from '../components/RelatedErrorFallback'
 
 type Related = {
   [key: string]: string[]
@@ -28,6 +30,7 @@ export default function DetailPage() {
   const [related, setRelated] = useState<Related>({})
   const [homeworld, setHomeworld] = useState<Result>()
   const navigate = useNavigate()
+  const handleError = useErrorHandler()
 
   useEffect(() => {
     const resourceName = resourses === 'characters' ? 'people' : resourses
@@ -82,13 +85,15 @@ export default function DetailPage() {
               setHomeworld(planet)
             })
             .catch(err => {
-              console.log('Error while getting homeworld', err)
+              setHomeworld(undefined)
               setLoading(false)
             })
         }
-        setLoading(false)
       })
       .catch(err => {
+        handleError(err)
+      })
+      .finally(() => {
         setLoading(false)
       })
   }, [resourses])
@@ -156,7 +161,9 @@ export default function DetailPage() {
           .filter(r => related[r])
           .map((r: string, index: number) => (
             <Grid item key={index} xs={12} sm={4} md={3}>
-              <Related name={r} urls={related[r]} />
+              <ErrorBoundary FallbackComponent={RelatedErrorFallback}>
+                <Related name={r} urls={related[r]} />
+              </ErrorBoundary>
             </Grid>
           ))}
       </Grid>
