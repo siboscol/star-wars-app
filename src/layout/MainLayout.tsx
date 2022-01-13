@@ -1,8 +1,10 @@
 import { Box } from '@mui/material'
+import { ErrorBoundary } from 'react-error-boundary'
 import { Outlet } from 'react-router-dom'
 import Footer from '../components/Footer'
 import ResponsiveToolbar from '../components/ResponsiveToolbar'
 import background from '../static/images/starwars-background.jpeg'
+import ErrorFallback from '../components/GenericErrorFallback'
 
 export default function MainLayout() {
   return (
@@ -20,7 +22,9 @@ export default function MainLayout() {
     >
       <ResponsiveToolbar />
       <main>
-        <Outlet />
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Outlet />
+        </ErrorBoundary>
       </main>
       <Footer />
     </Box>
