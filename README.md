@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8b9d8d94-3ff2-4879-b079-f0ff7bce6183/deploy-status)](https://app.netlify.com/sites/heuristic-goldwasser-20ccee/deploys)
+
 # Star Wars Web App
 
 A themed web app built with **React**, **Material-UI** and **Typescript** which consumes the public **Star Wars API (SWAPI)**.
