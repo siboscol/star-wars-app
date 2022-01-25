@@ -8,7 +8,7 @@ This web app helps you explore all 7 Star Wars movies by Planets, Spaceships, Ve
 
 This app has been built to practice core concepts of React with Typescript.
 
-# DEMO: https://star-wars-app.netlify.app/
+# DEMO: https://star-wars-app-demo.netlify.app/
 
 ## Features
 
